@@ -1,9 +1,8 @@
-
-/* Universidad de Los Andes
- * Sincronizacion de procesos
- * Asignatura: Sistemas Operativos
- * Autor: Alvaro Araujo
- * Fecha: 20/04/2018
+/* universidad de los andes
+ * sincronizacion de procesos
+ * asignatura: sistemas operativos
+ * autor: alvaro araujo
+ * fecha: 20/04/2018
  */
 
 #include <stdio.h>
@@ -32,7 +31,7 @@ int main()
   int sem;
 
   system("clear");
-  printf("\n\t--> Proceso %d \n\n",getpid());
+  printf("\n\t--> proceso %d \n\n",getpid());
   srand(getpid());
   key_t id_shmem = ftok(ROUTE, ID);
   void *pto_shmem;
@@ -44,14 +43,14 @@ int main()
     exit(EXIT_FAILURE);
   }
 
-  /* Busqueda del segmento de memoria compartida */
+  /* busqueda del segmento de memoria compartida */
   if((shmem = shmget(id_shmem, sizeof(shmem_data), 0666)) < 0)
   {
 		perror("\tshmget");
 		exit(EXIT_FAILURE);
 	}
 
-  /* Vinculacion al segmento */
+  /* vinculacion al segmento */
 	if((pto_shmem = shmat(shmem, NULL, 0)) == (char *) -1)
 	{
 		perror("\tshmat");
@@ -79,7 +78,7 @@ int main()
   for(i=0; i<repeticion; i++)
   {
     pto_inf->array_p[pos].numero++;
-    printf("\tNumero: %d\n",i);
+    printf("\tnumero: %d\n",i);
     usleep(500000);
   }
 
